@@ -4,8 +4,8 @@ Module that contains the default application logger configuration.
 """
 import logging
 import sys
+import os
 
-from . import configuration
 from .exceptions import CouldNotSetLogLevel, CouldNotSetStreamHandler
 from .formatters import StackDriverJsonFormatter
 
@@ -16,7 +16,7 @@ def getLogger(name):
 
     logger = logging.getLogger(name)
     try:
-        logger.setLevel(configuration.LOG_LEVEL)
+        logger.setLevel(os.getenv('LOG_LEVEL', 'INFO'))
     except Exception as error:
         raise CouldNotSetLogLevel(error)
     try:
