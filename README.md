@@ -16,24 +16,16 @@ After cloning the project, you will need Python 3.7.5.
 ```bash
 python3 -m venv /path/to/new/virtual/environment
 source venv/bin/activate
-pip install -r requirements.txt
 ```
 
 ## Settings
-
-
-## Running
-
+`pip install -r requirements.txt``
 
 ## Testing
 
 Unit tests:
 
-`nosetests tests/unit`
-
-Coverage:
-
-`nosetests --with-coverage --cover-package=`
+`python -m unittest`
 
 ## Built With
 
