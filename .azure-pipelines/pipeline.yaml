@@ -25,10 +25,9 @@ steps:
   displayName: 'dist'
 
 - task: PublishPipelineArtifact@1
-  displayName: 'Publish Artifact'
   inputs:
-    path: $(System.DefaultWorkingDirectory)/dist/stackdriver-formatter
-    artifact: stackdriver-formatter
+    targetPath: '$(Pipeline.Workspace)' 
+    artifactName: 'drop'
 
 - task: TwineAuthenticate@0
   displayName: 'Twine Authenticate '
@@ -37,5 +36,6 @@ steps:
 
 - bash: |
    pip install --upgrade pip twine
-   python -m twine upload -r FrontArtifacts --config-file $(PYPIRC_PATH) "$(System.DefaultWorkingDirectory)/dist/stackdriver-formatter/*"
+   ls $(Pipeline.Workspace)
+   python -m twine upload -r FrontArtifacts --config-file $(PYPIRC_PATH) "$(Pipeline.Workspace)/dist/drop/*"
   displayName: 'Twine Upload Artifact'
