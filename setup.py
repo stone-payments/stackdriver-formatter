@@ -14,5 +14,5 @@ setup(
     packages=find_packages(exclude=['tests']),
     py_modules=['stackdriver_formatter'],
     url='https://github.com/stone-payments/stackdriver-formatter',
-    version='0.1.0',
+    version='1.0.0',
 )
