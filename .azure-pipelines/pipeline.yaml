@@ -35,6 +35,7 @@ steps:
     artifactFeeds: FrontArtifacts
 
 - bash: |
-   pip install --upgrade pip twine
-   python -m twine upload -r FrontArtifacts --config-file $(PYPIRC_PATH) "$(Pipeline.Workspace)/stackdriver-formatter"
+    ls $(Pipeline.Workspace)
+    pip install --upgrade pip twine
+    python -m twine upload -r FrontArtifacts --config-file $(PYPIRC_PATH) "$(Pipeline.Workspace)/stackdriver-formatter/*"
   displayName: 'Twine Upload Artifact'
