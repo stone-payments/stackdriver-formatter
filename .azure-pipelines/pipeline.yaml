@@ -27,4 +27,5 @@ steps:
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact'
   inputs:
+    artifactName: 'stackdriver-formatter'
     PathtoPublish: 'dist'
