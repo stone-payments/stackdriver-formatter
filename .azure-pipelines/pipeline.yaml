@@ -26,7 +26,7 @@ steps:
 
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(Pipeline.Workspace)' 
+    targetPath: '$(Pipeline.Workspace)/dist' 
     artifactName: 'drop'
 
 - task: TwineAuthenticate@0
