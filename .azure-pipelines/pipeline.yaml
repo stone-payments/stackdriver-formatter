@@ -37,5 +37,6 @@ steps:
 
 - bash: |
    pip install --upgrade pip twine
+   ls $(System.DefaultWorkingDirectory)/dist
    python -m twine upload -r FrontArtifacts --config-file $(PYPIRC_PATH) "$(System.DefaultWorkingDirectory)/dist/stackdriver-formatter/*"
   displayName: 'Twine Upload Artifact'
