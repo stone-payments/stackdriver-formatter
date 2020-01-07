@@ -27,7 +27,6 @@ steps:
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact'
   inputs:
-    artifactName: 'stackdriver-formatter'
     PathtoPublish: 'dist'
 
 - task: TwineAuthenticate@0
@@ -38,5 +37,5 @@ steps:
 - bash: |
    pip install --upgrade pip twine
    ls $(System.DefaultWorkingDirectory)/dist
-   python -m twine upload -r FrontArtifacts --config-file $(PYPIRC_PATH) "$(System.DefaultWorkingDirectory)/dist/stackdriver-formatter/*"
+   python -m twine upload -r FrontArtifacts --config-file $(PYPIRC_PATH) "$(System.DefaultWorkingDirectory)/dist/drop/*"
   displayName: 'Twine Upload Artifact'
