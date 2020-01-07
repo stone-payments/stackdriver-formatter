@@ -24,10 +24,11 @@ steps:
     python setup.py bdist_wheel
   displayName: 'dist'
 
-- task: PublishBuildArtifacts@1
+- task: PublishPipelineArtifact@1
   displayName: 'Publish Artifact'
   inputs:
-    PathtoPublish: 'dist'
+    path: $(System.DefaultWorkingDirectory)/dist/stackdriver-formatter
+    artifact: stackdriver-formatter
 
 - task: TwineAuthenticate@0
   displayName: 'Twine Authenticate '
@@ -36,6 +37,5 @@ steps:
 
 - bash: |
    pip install --upgrade pip twine
-   ls $(System.DefaultWorkingDirectory)/dist
-   python -m twine upload -r FrontArtifacts --config-file $(PYPIRC_PATH) "$(System.DefaultWorkingDirectory)/dist/drop/*"
+   python -m twine upload -r FrontArtifacts --config-file $(PYPIRC_PATH) "$(System.DefaultWorkingDirectory)/dist/stackdriver-formatter/*"
   displayName: 'Twine Upload Artifact'
