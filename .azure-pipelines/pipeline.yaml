@@ -27,7 +27,8 @@ steps:
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact'
   inputs:
-    PathtoPublish: 'dist'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'  
+    artifactName: 'stackdriverformatter' 
 
 - task: TwineAuthenticate@0
   displayName: 'Twine Authenticate '
@@ -35,7 +36,7 @@ steps:
     artifactFeeds: FrontArtifacts
 
 - bash: |
-
     pip install --upgrade pip twine
-    python -m twine upload -r FrontArtifacts --config-file $(PYPIRC_PATH) "$(System.DefaultWorkingDirectory)/dist/drop/*"
+    ls $(Build.ArtifactStagingDirectory)
+    python -m twine upload -r FrontArtifacts --config-file $(PYPIRC_PATH) "$(Build.ArtifactStagingDirectory)/stackdriverformatter/*"
   displayName: 'Twine Upload Artifact'
