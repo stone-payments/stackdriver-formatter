@@ -1,30 +1,41 @@
 trigger:
-    - master
-    
-    pool:
-      vmImage: 'ubuntu-latest'
-    
-    steps:
-    - task: UsePythonVersion@0
-      displayName: 'Use Python 3.7.5'
-      inputs:
-        versionSpec: '3.7.5'
-        architecture: 'x64'
-    
-    - script: |
-        python -m pip install --upgrade pip setuptools wheel
-        pip install -r requirements.txt
-      displayName: 'Install dependencies'
-    
-    - script: |
-        python -m unittest 
-      displayName: 'unittest'
-    
-    - script: |
-        python setup.py bdist_wheel
-      displayName: 'dist'
-    
-    - task: PublishBuildArtifacts@1
-      displayName: 'Publish Artifact'
-      inputs:
-        PathtoPublish: 'dist'
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: UsePythonVersion@0
+  displayName: 'Use Python 3.7.5'
+  inputs:
+    versionSpec: '3.7.5'
+    architecture: 'x64'
+
+- script: |
+    python -m pip install --upgrade pip setuptools wheel
+    pip install -r requirements.txt
+  displayName: 'Install dependencies'
+
+- script: |
+    python -m unittest 
+  displayName: 'unittest'
+
+- script: |
+    python setup.py bdist_wheel
+  displayName: 'dist'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact'
+  inputs:
+    PathtoPublish: 'dist'
+
+- task: TwineAuthenticate@0
+  displayName: 'Twine Authenticate '
+  inputs:
+    artifactFeeds: FrontArtifacts
+
+- bash: |
+    pip install --upgrade pip twine
+    ls dist/
+    python -m twine upload -r FrontArtifacts --config-file $(PYPIRC_PATH) "dist/*"
+  displayName: 'Twine Upload Artifact'
