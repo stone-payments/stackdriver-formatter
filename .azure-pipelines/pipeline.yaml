@@ -29,3 +29,13 @@ steps:
   inputs:
     artifactName: 'stackdriver-formatter'
     PathtoPublish: 'dist'
+
+- task: TwineAuthenticate@0
+  displayName: 'Twine Authenticate '
+  inputs:
+    artifactFeeds: FrontArtifacts
+
+- bash: |
+   pip install --upgrade pip twine
+   python -m twine upload -r FrontArtifacts --config-file $(PYPIRC_PATH) "$(System.DefaultWorkingDirectory)/dist/stackdriver-formatter/*"
+  displayName: 'Twine Upload Artifact'
