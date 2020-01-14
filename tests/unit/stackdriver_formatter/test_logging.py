@@ -3,7 +3,7 @@ import sys
 import unittest
 from unittest import TestCase
 
-from stackdriver_formatter import logging as custom_logging
+from stackdriver_formatter import logger as custom_logging
 from stackdriver_formatter import exceptions
 
 class TestStackDriverJsonFormat(TestCase):
