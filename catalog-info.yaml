@@ -1,0 +1,16 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+    name: stackdriver-formatter
+    title: Ansible Common linux
+    description: Stackdriver Python log stdout formatter.
+    namespace: stone
+    tags:
+      - iac-library
+      - observability
+    annotations:
+      legacy.stone.tech/owner-email: foundation.platform@stone.com.br
+spec:
+    type: library
+    lifecycle: production
+    owner: stone-payments/frt-common-Writer
