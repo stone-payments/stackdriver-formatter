@@ -2,7 +2,7 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
     name: stackdriver-formatter
-    title: Ansible Common linux
+    title: Stackdriver Formatter
     description: Stackdriver Python log stdout formatter.
     namespace: stone
     tags:
